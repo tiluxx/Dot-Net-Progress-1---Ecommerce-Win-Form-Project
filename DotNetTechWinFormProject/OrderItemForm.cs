@@ -35,7 +35,7 @@ namespace DotNetTechWinFormProject
 
         public void showCustomerGRD(DataGridView grd)
         {
-            string sql = "select CustID as ID, CustName as 'Agent Name', Address from Customer";
+            string sql = "select CustID as ID, CustName as 'Customer Name', Address from Customer";
             data = new SqlDataAdapter(sql, conn);
             tb = new DataTable();
             data.Fill(tb);
@@ -227,7 +227,7 @@ namespace DotNetTechWinFormProject
         {
             if (customerIdSelectedTxt.Text.Equals(""))
             {
-                MessageBox.Show("Please choose an agent", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please choose a customer", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -238,9 +238,9 @@ namespace DotNetTechWinFormProject
             }
 
             string orderId = getNewOrderID(dbConn);
-            string agentId = customerIdSelectedTxt.Text;
+            string customerId = customerIdSelectedTxt.Text;
 
-            string sql = "insert into _Order values ('" + orderId + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + agentId + "')";
+            string sql = "insert into _Order values ('" + orderId + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + customerId + "')";
             cm = new SqlCommand(sql, conn);
             cm.ExecuteNonQuery();
 
